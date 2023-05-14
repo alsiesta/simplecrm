@@ -18,7 +18,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 
 
 
@@ -36,7 +41,12 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatSidenavModule,
     FormsModule,
-    MatIconModule,MatButtonModule,MatTooltipModule,MatDialogModule,MatInputModule,MatFormFieldModule,MatDatepickerModule,MatNativeDateModule
+    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,
+    
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideMessaging(() => getMessaging())
   ],
   providers: [],
   bootstrap: [AppComponent]
