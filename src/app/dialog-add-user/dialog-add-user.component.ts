@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { Firestore, collection } from '@angular/fire/firestore';
 import { FirestoreService } from '../firestore.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -9,7 +9,7 @@ import { FirestoreService } from '../firestore.service';
   styleUrls: ['./dialog-add-user.component.scss'],
 })
 export class DialogAddUserComponent {
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(private firestoreService: FirestoreService,public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
   user = new User();
   birthDate: Date; //first binding the date input as DateObject
   loading: boolean = false;
@@ -20,6 +20,7 @@ export class DialogAddUserComponent {
     this.firestoreService.createDoc(this.user);
     setTimeout(() => {
       this.loading = false;
-    }, 1000);
+      this.dialogRef.close()
+    }, 500);
   }
 }
