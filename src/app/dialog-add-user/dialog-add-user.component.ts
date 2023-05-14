@@ -12,10 +12,14 @@ export class DialogAddUserComponent {
   constructor(private firestoreService: FirestoreService) {}
   user = new User();
   birthDate: Date; //first binding the date input as DateObject
+  loading: boolean = false;
 
   saveUser() {
+    this.loading = true;
     this.user.birthDate = this.birthDate.getTime(); //then transforming the DateObject into a timestamp (number), which is easier to store in firebase
-    console.log('current user is: ', this.user);
     this.firestoreService.createDoc(this.user);
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 }

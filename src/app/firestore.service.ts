@@ -40,8 +40,10 @@ export class FirestoreService {
 
   createDoc(user) {
     // user = new User();
-    return addDoc(this.usersCollection, user.toJSON());
-
+    return addDoc(this.usersCollection, user.toJSON())
+      .then((result) => {
+        console.log(result);
+    })
     // //unten setze ich innerhalb der {} den user nochmals in ein user{}. Und deswegen muss ich das in game.ts deconstructen
     // let user = new User();
     // return addDoc(this.usersCollection, { user: user.toJSON() });
