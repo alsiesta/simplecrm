@@ -9,7 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog-add-user.component.scss'],
 })
 export class DialogAddUserComponent {
-  constructor(private firestoreService: FirestoreService,public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
+  constructor(private firestoreService: FirestoreService, public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
   user = new User();
   birthDate: Date; //first binding the date input as DateObject
   loading: boolean = false;

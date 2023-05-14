@@ -36,7 +36,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
     AppComponent,
     DashboardComponent,
     UserComponent,
-    DialogAddUserComponent
+    DialogAddUserComponent,
   ],
   imports: [
     BrowserModule,

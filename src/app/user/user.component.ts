@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
-import { User } from 'src/models/user.class';
+import { FirestoreService } from '../firestore.service';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  // user = new User();
+  constructor(public dialog: MatDialog, private firestoreService: FirestoreService) { }
 
-  constructor(public dialog: MatDialog) {}
-  
+  ngOnInit() {
+    this.firestoreService.getUsers();
+    };
+
   openDialog() {
     this.dialog.open(DialogAddUserComponent)
   }
