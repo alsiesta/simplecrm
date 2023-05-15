@@ -10,9 +10,11 @@ import { FirestoreService } from '../firestore.service';
 })
 export class UserComponent {
   constructor(public dialog: MatDialog, private firestoreService: FirestoreService) { }
-
+  
   ngOnInit() {
-    this.firestoreService.getUsers();
+    // this.allUsers =  this.firestoreService.getUsers();
+    console.log("My Users in User Component: ",this.firestoreService.getUsers());
+    
     };
 
   openDialog() {

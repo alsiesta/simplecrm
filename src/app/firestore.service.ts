@@ -56,7 +56,7 @@ export class FirestoreService {
         this.users.push(user);
       });
       console.log(this.users);
-
+      return this.users;
     });
   };
 
