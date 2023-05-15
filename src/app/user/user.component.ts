@@ -1,24 +1,39 @@
 import { Component } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { FirestoreService } from '../firestore.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  constructor(public dialog: MatDialog, private firestoreService: FirestoreService) { }
-  
+  users: any[] = [];
+  allUsers: any[] = [];
+
+  constructor(
+    public dialog: MatDialog,
+    private firestoreService: FirestoreService
+  ) {}
+
   ngOnInit() {
-    // this.allUsers =  this.firestoreService.getUsers();
-    console.log("My Users in User Component: ",this.firestoreService.getUsers());
-    
-    };
+    this.firestoreService.users$
+      .subscribe(users => {
+      this.users = users;
+      console.log('From GPT: ',this.users);
+      
+    });
+
+    this.firestoreService
+      .getUsers$()
+      .subscribe((changes) => {
+        console.log('My users Mihaistyle: ', changes)
+        this.allUsers = changes;
+      });
+  }
 
   openDialog() {
-    this.dialog.open(DialogAddUserComponent)
+    this.dialog.open(DialogAddUserComponent);
   }
-  
 }
