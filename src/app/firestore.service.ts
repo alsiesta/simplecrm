@@ -20,24 +20,26 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FirestoreService {
   // approach #1
-  private usersSubject = new BehaviorSubject<any[]>([]);
-  public users$ = this.usersSubject.asObservable();
-
   private usersCollection: CollectionReference<DocumentData>;
   private docRef: DocumentReference<any>;
-  users: any[] = []; // Array to store user entries
+  
+  // // approach #2
+  // private usersSubject = new BehaviorSubject<any[]>([]);
+  // public users$ = this.usersSubject.asObservable();
+  // users: any[] = []; // Array to store user entries
 
   constructor(private firestore: Firestore) {
     this.usersCollection = collection(this.firestore, 'users');
-
-    onSnapshot(this.usersCollection, (snapshot) => {
-      const users: any[] = [];
-      snapshot.forEach((doc) => {
-        const user = doc.data();
-        users.push(user);
-      });
-      this.usersSubject.next(users)
-  });
+    
+  //   // approach #2
+  //   onSnapshot(this.usersCollection, (snapshot) => {
+  //     const users: any[] = [];
+  //     snapshot.forEach((doc) => {
+  //       const user = doc.data();
+  //       users.push(user);
+  //     });
+  //     this.usersSubject.next(users)
+  // });
   }
 
   getCollection(collectionName: string) {
@@ -61,9 +63,10 @@ export class FirestoreService {
 
 
   getUsers$() {
-    return collectionData(this.usersCollection);
+    return collectionData(this.usersCollection,idField);
   }
 
+  
 
 
   // getUsers = async () => {

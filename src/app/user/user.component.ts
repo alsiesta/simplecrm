@@ -18,19 +18,19 @@ export class UserComponent {
   ) {}
 
   ngOnInit() {
-    this.firestoreService.users$
-      .subscribe(users => {
-      this.users = users;
-      console.log('From GPT: ',this.users);
-      
-    });
+    // approach #2
+    // this.firestoreService.users$
+    //   .subscribe(users => {
+    //   this.users = users;
+    //   console.log('From GPT: ',this.users);
 
-    this.firestoreService
-      .getUsers$()
-      .subscribe((changes) => {
-        console.log('My users Mihaistyle: ', changes)
-        this.allUsers = changes;
-      });
+    // });
+
+    // approach #1
+    this.firestoreService.getUsers$().subscribe((changes) => {
+      console.log('My users user: ', changes);
+      this.allUsers = changes;
+    });
   }
 
   openDialog() {

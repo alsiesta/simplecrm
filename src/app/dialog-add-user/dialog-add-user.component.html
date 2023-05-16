@@ -17,6 +17,12 @@
     </div>
     <div>
         <mat-form-field appearance="outline" class="w100">
+            <mat-label>E-mail</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="E-mail">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="w100">
             <mat-label>Birth date</mat-label>
             <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="MM/DD/YYYY" [matDatepicker]="picker">
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
