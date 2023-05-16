@@ -63,7 +63,8 @@ export class FirestoreService {
 
 
   getUsers$() {
-    return collectionData(this.usersCollection,idField);
+    return collectionData(this.usersCollection,  {
+      idField: 'docId'  });
   }
 
   
