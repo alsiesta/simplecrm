@@ -52,7 +52,9 @@ export class FirestoreService {
   }
 
   getDocData(docRef) {
-    const userData = docData(docRef);
+    const userData = docData(docRef,{
+      idField: 'userId'
+  });
     return userData;
   }
 

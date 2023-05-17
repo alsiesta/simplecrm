@@ -18,7 +18,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu'
 
 
 import { FormsModule } from '@angular/forms';
@@ -47,7 +48,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     MatToolbarModule,
     MatSidenavModule,
     FormsModule,
-    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,MatProgressBarModule,MatCardModule,
+    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,MatProgressBarModule,MatCardModule, MatMenuModule,
     
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

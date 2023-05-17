@@ -12,6 +12,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;
 }
 
+.mt-32{
+    margin-top: 32px;
+}
+
 .mdc-dialog__title+.mdc-dialog__content{
 padding: 16px !important;
 }
