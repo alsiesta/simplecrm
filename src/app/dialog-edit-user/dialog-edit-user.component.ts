@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/models/user.class';
+import { FirestoreService } from '../firestore.service';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -10,8 +11,11 @@ export class DialogEditUserComponent {
   user = new User();
   loading: boolean = false;
   birthDate: Date;
-
-  saveUser(){}
+  userId: string;
+  constructor(private firestoreService: FirestoreService) {}
+  saveUser() {
+    this.firestoreService.updateDocument(this.userId, this.user.toJSON());
+  }
 }
 
 

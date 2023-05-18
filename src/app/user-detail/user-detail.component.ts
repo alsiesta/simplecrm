@@ -32,11 +32,14 @@ export class UserDetailComponent {
 
   editUserAddress() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = new User(this.user); //durch new User() erstelle ich eine neue Kopie von meinem User Obj. Wenn ich das nicht machen würde, würde ich durch two-way binding dieses Object in Memory editieren - egal ob ich save drücke oder nur cancel.
+    dialog.componentInstance.user = new User(this.user); //durch new User() erstelle ich eine neue Kopie von meinem User Obj. Wenn ich das nicht machen würde, würde ich durch two-way binding dieses Object in Memory editieren - egal ob ich save drücke oder nur cancel
+    dialog.componentInstance.userId = this.userId
   }
 
   editUser() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId
+
   }
 }

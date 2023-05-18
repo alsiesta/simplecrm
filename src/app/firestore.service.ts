@@ -11,35 +11,19 @@ import {
   DocumentData,
   DocumentReference,
   Firestore,
-  onSnapshot,
+  onSnapshot,getFirestore,updateDoc
 } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-
+ 
 @Injectable({
   providedIn: 'root',
 })
-export class FirestoreService {
-  // approach #1
+export class FirestoreService {private user: User;
+
   private usersCollection: CollectionReference<DocumentData>;
   private docRef: DocumentReference<any>;
   
-  // // approach #2
-  // private usersSubject = new BehaviorSubject<any[]>([]);
-  // public users$ = this.usersSubject.asObservable();
-  // users: any[] = []; // Array to store user entries
-
   constructor(private firestore: Firestore) {
     this.usersCollection = collection(this.firestore, 'users');
-    
-  //   // approach #2
-  //   onSnapshot(this.usersCollection, (snapshot) => {
-  //     const users: any[] = [];
-  //     snapshot.forEach((doc) => {
-  //       const user = doc.data();
-  //       users.push(user);
-  //     });
-  //     this.usersSubject.next(users)
-  // });
   }
 
   getCollection(collectionName: string) {
@@ -58,8 +42,22 @@ export class FirestoreService {
     return userData;
   }
 
+
+  updateDocument(id, user) {
+    updateDoc(this.getDocRef(id), user)
+      .then(() => {
+      console.log('A New Document Field has been added to an existing document',); 
+      })
+      .catch(error => {
+        console.log(error);
+    })
+  }
+
+
   createDoc(user) {
     return addDoc(this.usersCollection, user.toJSON()).then((result) => {
+      console.log(result);
+      
     });
   }
 
