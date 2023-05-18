@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../firestore.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,7 +16,8 @@ export class UserDetailComponent {
   user: any = {};
   constructor(
     private route: ActivatedRoute,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -20,22 +25,18 @@ export class UserDetailComponent {
       this.userId = paramMap.get('id');
       let docRef = this.firestoreService.getDocRef(this.userId);
       this.firestoreService.getDocData(docRef).subscribe((userData) => {
-        this.user = userData;        
+        this.user = userData;
       });
     });
   }
 
-  openAddressDialog() {
-    
+  editUserAddress() {
+    const dialog = this.dialog.open(DialogEditAddressComponent);
+    dialog.componentInstance.user = new User(this.user); //durch new User() erstelle ich eine neue Kopie von meinem User Obj. Wenn ich das nicht machen würde, würde ich durch two-way binding dieses Object in Memory editieren - egal ob ich save drücke oder nur cancel.
   }
-  
-  editAddressMenu() { }
-  
 
-  openUserDialog() {
-    
-  }
-  editUserMenu() {
-    
+  editUser() {
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = new User(this.user);
   }
 }

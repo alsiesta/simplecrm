@@ -1,5 +1,5 @@
 
-<div class="dialog-container">
+<div>
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
 <h1 mat-dialog-title>Add User</h1>
@@ -46,9 +46,7 @@
             <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City">
         </mat-form-field>
     </div>
-    <div>
-        
-    </div>
+    
 </div>
 <div mat-dialog-actions>
     <button [disabled]="loading" mat-dialog-close mat-button>Cancel</button>

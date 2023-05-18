@@ -30,6 +30,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 
 
 
@@ -40,6 +42,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     UserComponent,
     DialogAddUserComponent,
     UserDetailComponent,
+    DialogEditAddressComponent,
+    DialogEditUserComponent,
   ],
   imports: [
     BrowserModule,
