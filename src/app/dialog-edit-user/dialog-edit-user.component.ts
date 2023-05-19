@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { FirestoreService } from '../firestore.service';
+import { FirestoreService } from '../services/firestore.service';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { MatDialogRef } from '@angular/material/dialog';
 

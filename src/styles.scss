@@ -1,26 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.mr-16{
-    margin-right: 16px;
+html,
+body {
+  height: 100%;
 }
 
-.w100{
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mr-16 {
+  margin-right: 16px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.mt-32 {
+  margin-top: 32px;
+}
+
+.mdc-dialog__title + .mdc-dialog__content {
+  padding: 16px !important;
+}
+
+mat-card {
+  padding: 16px;
+}
+
+.form-container {
+  display: block;
+  max-width: 300px;
+  margin: auto;
+  background-color: rgb(226, 226, 226);
+  padding: 48px;
+  border-radius: 16px;
+
+  mat-form-field {
     width: 100%;
+  }
 }
 
-.mt-32{
-    margin-top: 32px;
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.mdc-dialog__title+.mdc-dialog__content{
-padding: 16px !important;
+.margin-top{
+    margin-top: 16px;
 }
 
-mat-card{
-    padding: 16px;
+.text-center{
+    text-align: center;
 }
 

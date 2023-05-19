@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { FirestoreService } from '../firestore.service';
+import { FirestoreService } from '../services/firestore.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
