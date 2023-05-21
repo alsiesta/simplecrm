@@ -14,8 +14,10 @@
         <a routerLink="home"><span>Simple CRM</span></a>
 
         <ng-container *ngIf="authService.currentUser$ | async as user; else loginButton">
-          <button mat-button routerLink="login" (click)="logOut()">
-            <mat-icon>logout</mat-icon>Logout
+          <button mat-button [mat-menu-trigger-for]="userMenu">
+            <mat-icon>account_circle</mat-icon>
+            {{user}}
+            <mat-icon>expand_more</mat-icon>
           </button>
         </ng-container>
 
@@ -37,3 +39,7 @@
   </div>
 
 </mat-drawer-container>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logOut()">Logout</button>
+</mat-menu>

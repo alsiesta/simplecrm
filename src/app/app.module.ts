@@ -37,7 +37,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 @NgModule({
@@ -61,7 +61,7 @@ import { HomeComponent } from './components/home/home.component';
     MatToolbarModule,
     MatSidenavModule,
     FormsModule,
-    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,MatProgressBarModule,MatCardModule, MatMenuModule, MatInputModule, ReactiveFormsModule,
+    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,MatProgressBarModule,MatCardModule, MatMenuModule, MatInputModule, ReactiveFormsModule,HotToastModule.forRoot(),
     
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
