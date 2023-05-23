@@ -26,6 +26,8 @@ export class AuthenticationService {
         const user = value.user;
         // console.log('Your account has been created!', user);
         this.toast.success('Your account has been created!');
+        console.log(this.currentUser$);
+        
       },
       (reason: any) => {
         // console.error(typeof reason); // to find out the type of the error result
@@ -34,6 +36,15 @@ export class AuthenticationService {
         const codeValue = reason.customData._tokenResponse.error.message // expected output: "EMAIL_EXISTS"
         if (codeValue === 'EMAIL_EXISTS') {
           this.toast.error("SORRY! This email is already in use.");
+          console.log(
+            this.currentUser$.subscribe(res => {
+            if (res) {              
+              console.log('Current logged in user is: ', res.email)
+            } else {
+              console.log('There is no user logged in currently.');
+              
+            };
+          }));
         }
         
         // const codeValue = reason.code // expected output: "auth/email-already-in-use"
