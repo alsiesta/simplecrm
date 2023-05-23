@@ -44,8 +44,7 @@ export class SignUpComponent {
     private authService: AuthenticationService,
     private toast: HotToastService,
     private router: Router,
-    private usersService: UsersService,
-
+    private usersService: UsersService
   ) {}
 
   get name() {
@@ -62,29 +61,22 @@ export class SignUpComponent {
   }
 
   submit() {
-    if (!this.signUpForm.valid) {return;}
+    if (!this.signUpForm.valid) {
+      return;
+    }
 
     const { name, email, password } = this.signUpForm.value;
 
-    this.authService
-      .signUp(email, password)
-      .pipe(
-        switchMap(({ user: { uid } }) =>
-          this.usersService.addUser({ uid, email, displayName: name })
-        ),
-        this.toast.observe({
-          success: 'Congrats! You are all signed up',
-          loading: 'Signing up...',
-          error: ({ message }) => `${message}`,
-        })
-      )
-      .subscribe(() => {
-        this.router.navigate(['/home']);
-      });
-    
+    //VIA PROMISE
+    this.authService.userSignUp(email, password);
+
+    // //VIA OBSERVABLE
     // this.authService
-    //   .signUp(name, email)
+    //   .signUp(email, password)
     //   .pipe(
+    //     switchMap(({ user: { uid } }) =>
+    //       this.usersService.addUser({ uid, email, displayName: name })
+    //     ),
     //     this.toast.observe({
     //       success: 'Congrats! You are all signed up',
     //       loading: 'Signing up...',
@@ -94,5 +86,6 @@ export class SignUpComponent {
     //   .subscribe(() => {
     //     this.router.navigate(['/home']);
     //   });
+
   }
 }

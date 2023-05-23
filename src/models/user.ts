@@ -6,6 +6,8 @@ export interface ProfileUser {
     displayName?: string;
     phone?: string;
     address?: string;
-    photoURL?: string;
+  photoURL?: string;
+  
+  
   }
   

@@ -39,7 +39,6 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { HotToastModule } from '@ngneat/hot-toast';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,12 +60,18 @@ import { HotToastModule } from '@ngneat/hot-toast';
     MatToolbarModule,
     MatSidenavModule,
     FormsModule,
-    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,MatProgressBarModule,MatCardModule, MatMenuModule, MatInputModule, ReactiveFormsModule,HotToastModule.forRoot(),
+    MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatCardModule, MatMenuModule, MatInputModule, ReactiveFormsModule,
+    
+    HotToastModule.forRoot({
+      duration: 2000,
+      position: 'top-center',
+      autoClose: true}),
     
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideMessaging(() => getMessaging())
+    provideMessaging(() => getMessaging()),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
