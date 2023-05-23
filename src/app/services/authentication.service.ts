@@ -21,23 +21,28 @@ export class AuthenticationService {
   async userSignUp(email, password) {
     const signUpEmail = email;
     const signUpPassword = password;
-    createUserWithEmailAndPassword(this.auth, signUpEmail, signUpPassword)
-      .then(
-        (value) => {
-          const user = value.user;
-          console.log('Your account has been created!', user);
-        },
-        (reason: any) => {
-          console.error('Promise was rejected', reason);
-          //  throw reason;
+    createUserWithEmailAndPassword(this.auth, signUpEmail, signUpPassword).then(
+      (value) => {
+        const user = value.user;
+        // console.log('Your account has been created!', user);
+        this.toast.success('Your account has been created!');
+      },
+      (reason: any) => {
+        // console.error(typeof reason); // to find out the type of the error result
+        // const json = JSON.stringify(reason); // to understand the key/value pairs of the object
+        
+        const codeValue = reason.customData._tokenResponse.error.message // expected output: "EMAIL_EXISTS"
+        if (codeValue === 'EMAIL_EXISTS') {
+          this.toast.error("SORRY! This email is already in use.");
         }
-      )
-      .then(() => {
-        this.toast.info("I must be super-useful!")
-        this.toast.loading("I must be super-useful!")
-        this.toast.success("I must be super-useful!")
-        this.toast.error("I must be super-useful!")
-      });
+        
+        // const codeValue = reason.code // expected output: "auth/email-already-in-use"
+        // console.log(codeValue); // Output: "auth/email-already-in-use"
+        // if (codeValue === 'auth/email-already-in-use') {
+        //   this.toast.error("This email is already in use!");
+        // }
+      }
+    );
   }
 
   // // VIA OBSERVABLE

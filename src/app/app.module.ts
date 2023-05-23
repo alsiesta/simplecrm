@@ -63,7 +63,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     MatIconModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatCardModule, MatMenuModule, MatInputModule, ReactiveFormsModule,
     
     HotToastModule.forRoot({
-      duration: 2000,
+      duration: 3000,
       position: 'top-center',
       autoClose: true}),
     
