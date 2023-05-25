@@ -27,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideAuth,getAuth, Auth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { UserDetailComponent } from './user-detail/user-detail.component';
@@ -38,6 +38,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     provideMessaging(() => getMessaging()),
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
