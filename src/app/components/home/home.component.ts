@@ -9,5 +9,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HomeComponent {
   user$ = this.authService.currentUser$
   
-  constructor(private authService: AuthenticationService){}
+  constructor(private authService: AuthenticationService) {
+    const user = this.user$.subscribe((user) => {
+      console.log(user);
+    })
+    
+  }
 }

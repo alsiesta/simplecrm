@@ -33,6 +33,7 @@ export class UsersService {
 
   addUser(user: ProfileUser): Observable<void> {
     const ref = doc(this.firestore, 'users', user.uid);
+    console.log('Neuer User: ',user);
     return from(setDoc(ref, user));
   }
 

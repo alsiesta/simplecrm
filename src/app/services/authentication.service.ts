@@ -15,7 +15,7 @@ import { Observable, from, switchMap } from 'rxjs';
 export class AuthenticationService {
   currentUser$ = authState(this.auth);
 
-  constructor(private auth: Auth, private toast: HotToastService) {}
+  constructor(private auth: Auth, private toast: HotToastService) { }
 
   // VIA PROMISE
   async userSignUp(email, password) {
@@ -23,7 +23,7 @@ export class AuthenticationService {
     const signUpPassword = password;
     createUserWithEmailAndPassword(this.auth, signUpEmail, signUpPassword).then(
       (value) => {
-        const user = value.user;
+        // const user = value.user;
         // console.log('Your account has been created!', user);
         this.toast.success('Your account has been created!');
         console.log(this.currentUser$);
@@ -38,13 +38,13 @@ export class AuthenticationService {
           this.toast.error("SORRY! This email is already in use.");
           console.log(
             this.currentUser$.subscribe(res => {
-            if (res) {              
-              console.log('Current logged in user is: ', res.email)
-            } else {
-              console.log('There is no user logged in currently.');
+              if (res) {
+                console.log('Current logged in user is: ', res.email)
+              } else {
+                console.log('There is no user logged in currently.');
+              };
               
-            };
-          }));
+            }));
         }
         
         // const codeValue = reason.code // expected output: "auth/email-already-in-use"
@@ -56,16 +56,20 @@ export class AuthenticationService {
     );
   }
 
-  // // VIA OBSERVABLE
-  // signUp(email: string, password: string): Observable<UserCredential> {
-  //   return from(createUserWithEmailAndPassword(this.auth, email, password));
-  // }
+  // VIA OBSERVABLE
+  signUp(email: string, password: string): Observable<UserCredential> {
+    console.log('signing');
+    return from(createUserWithEmailAndPassword(this.auth, email, password));
+  }
+
+  
 
   login(username: string, password: string) {
     return from(signInWithEmailAndPassword(this.auth, username, password));
   }
 
   logout() {
-    return from(this.auth.signOut());
+    // return this.auth.signOut(); //logging out via promise
+    return from(this.auth.signOut()); //logging out via observable
   }
 }

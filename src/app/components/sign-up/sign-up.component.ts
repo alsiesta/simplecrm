@@ -65,27 +65,32 @@ export class SignUpComponent {
       return;
     }
 
-    const { name, email, password } = this.signUpForm.value;
+    const { email, password, name } = this.signUpForm.value;
 
-    //VIA PROMISE
-    this.authService.userSignUp(email, password);
+    // //VIA PROMISE
+    // this.authService.userSignUp(email, password);
 
-    // //VIA OBSERVABLE
-    // this.authService
-    //   .signUp(email, password)
-    //   .pipe(
-    //     switchMap(({ user: { uid } }) =>
-    //       this.usersService.addUser({ uid, email, displayName: name })
-    //     ),
-    //     this.toast.observe({
-    //       success: 'Congrats! You are all signed up',
-    //       loading: 'Signing up...',
-    //       error: ({ message }) => `${message}`,
-    //     })
-    //   )
-    //   .subscribe(() => {
-    //     this.router.navigate(['/home']);
-    //   });
-
+    //VIA OBSERVABLE
+    this.authService
+      .signUp(email, password)
+      .pipe(
+        switchMap(({ user: { uid } }) =>
+          this.usersService.addUser({ uid, email })
+        ),
+        this.toast.observe({
+          success: 'Congrats! You are all signed up',
+          loading: 'Signing up...',
+          error: ({ message }) => {
+            if (message === 'Firebase: Error (auth/email-already-in-use).') {
+              return 'Sorry, this Email already exists';
+            } else {
+              return `${message}`;
+            }
+          },
+        })
+      )
+      .subscribe(() => {
+        this.router.navigate(['/home']);
+      });
   }
 }
