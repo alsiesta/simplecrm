@@ -18,18 +18,19 @@ import { AuthenticationService } from './authentication.service';
 export class UsersService {
   constructor(private firestore: Firestore, private authService: AuthenticationService) {}
 
-  get currentUserProfile$(): Observable<ProfileUser | null> {
-    return this.authService.currentUser$.pipe(
-      switchMap((user) => {
-        if (!user?.uid) {
-          return of(null);
-        }
+  
+  // get currentUserProfile$(): Observable<ProfileUser | null> {
+  //   return this.authService.currentUser$.pipe(
+  //     switchMap((user) => {
+  //       if (!user?.uid) {
+  //         return of(null);
+  //       }
 
-        const ref = doc(this.firestore, 'users', user?.uid);
-        return docData(ref) as Observable<ProfileUser>;
-      })
-    );
-  }
+  //       const ref = doc(this.firestore, 'users', user?.uid);
+  //       return docData(ref) as Observable<ProfileUser>;
+  //     })
+  //   );
+  // }
 
   addUser(user: ProfileUser): Observable<void> {
     const ref = doc(this.firestore, 'users', user.uid);

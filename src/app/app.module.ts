@@ -27,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { provideAuth,getAuth, Auth } from '@angular/fire/auth';
+import { provideAuth, getAuth} from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { UserDetailComponent } from './user-detail/user-detail.component';
