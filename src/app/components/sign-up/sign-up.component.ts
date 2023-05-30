@@ -78,7 +78,7 @@ export class SignUpComponent implements OnInit {
     if (!this.signUpForm.valid || !name || !password || !email) {
       return;
     }
-    this.authService.signUp(email, password);
+    this.authService.signUp(email, password, name);
     this.router.navigate(['/home']);
   }
 

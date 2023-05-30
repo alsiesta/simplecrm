@@ -38,12 +38,16 @@ export class AuthenticationService {
     return userCredentials;
   };
 
-  signUp = async (email, password) => {
+  signUp = async (email, password, name) => {
     const userCredentials = await createUserWithEmailAndPassword(
       this.auth,
       email,
       password
-    );
+    ).then((userCredential => {
+      console.log('Dieses sind sie: ',userCredential);
+      console.log('Name ist: ',name);
+      
+    }));
     return userCredentials;
   };
 
